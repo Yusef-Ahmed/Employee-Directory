@@ -10,10 +10,13 @@ app.use(authRoute);
 
 // handle errors
 app.use((error, _req, res, _next) => {
-  console.log({ error });
   res
     .status(error.statusCode || 500)
-    .json({ message: error.message, statusCode: error.statusCode || 500 });
+    .json({
+      message: error.message,
+      statusCode: error.statusCode || 500,
+      ErrorData: error.ErrorData,
+    });
 });
 
 app.listen(3000);

@@ -1,7 +1,6 @@
 import {
   bigint,
   boolean,
-  int,
   mysqlTable,
   serial,
   timestamp,

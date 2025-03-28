@@ -13,6 +13,7 @@ exports.signup = async (req, res, next) => {
       email: req.body.email,
       password: hashedPassword,
     });
+
     res.status(200).json({ message: "User created successfully" });
   } catch (error) {
     const err = new Error("User already exists");
