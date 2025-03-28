@@ -1,5 +1,5 @@
 const { eq } = require("drizzle-orm");
-const { db } = require("../db/index");
+const db = require("../db/index");
 const { hrsTable } = require("../db/schema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
