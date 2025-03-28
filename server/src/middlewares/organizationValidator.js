@@ -12,6 +12,7 @@ exports.addOrganizationValidator = [
     .trim()
     .isIn(["department", "jobTitle"])
     .withMessage("Type should be department or jobTitle"),
+
   body("name")
     .trim()
     .isLength({ min: 2, max: 20 })
@@ -23,14 +24,13 @@ exports.editOrganizationValidator = [
     .trim()
     .isIn(["department", "jobTitle"])
     .withMessage("Type should be department or jobTitle"),
+
   body("name")
     .trim()
     .isLength({ min: 2, max: 20 })
     .withMessage("Name must be between 5 and 40 characters"),
-  body("id")
-    .trim()
-    .isNumeric()
-    .withMessage("Id should be a number"),
+
+  body("id").trim().isNumeric().withMessage("Id should be a number"),
 ];
 
 exports.deleteOrganizationValidator = [
@@ -38,8 +38,6 @@ exports.deleteOrganizationValidator = [
     .trim()
     .isIn(["department", "jobTitle"])
     .withMessage("Type should be department or jobTitle"),
-  body("id")
-    .trim()
-    .isNumeric()
-    .withMessage("Id should be a number"),
+
+  body("id").trim().isNumeric().withMessage("Id should be a number"),
 ];
