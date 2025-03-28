@@ -15,7 +15,7 @@ exports.signup = async (req, res, next) => {
     });
 
     res.status(200).json({ message: "User created successfully" });
-  } catch (error) {
+  } catch {
     const err = new Error("User already exists");
     err.statusCode = 409;
     next(err);
@@ -45,7 +45,9 @@ exports.login = async (req, res, next) => {
     return next(err);
   }
 
-  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
 
   res.status(200).json({ message: "User logged in successfully", token });
 };
