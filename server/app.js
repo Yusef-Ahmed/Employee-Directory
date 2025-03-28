@@ -1,7 +1,8 @@
 const express = require("express");
 const authRoute = require("./src/routes/authRoute");
 const employeesRoute = require("./src/routes/employeesRoute");
-const organizationRoute = require("./src/routes/organizationRoute");
+const departmentRoute = require("./src/routes/departmentRoute");
+const jobTitleRoute = require("./src/routes/jobTitleRoute");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -12,7 +13,9 @@ app.use(authRoute);
 
 app.use(employeesRoute);
 
-app.use(organizationRoute);
+app.use(departmentRoute);
+
+app.use(jobTitleRoute);
 
 // handle errors
 app.use((error, _req, res, _next) => {

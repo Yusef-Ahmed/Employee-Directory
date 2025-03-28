@@ -217,10 +217,10 @@
 			]
 		},
 		{
-			"name": "Organization",
+			"name": "Department",
 			"item": [
 				{
-					"name": "Add organization",
+					"name": "Add Department",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -240,13 +240,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/organization/department",
+							"raw": "localhost:3000/department",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"organization",
 								"department"
 							]
 						}
@@ -254,7 +253,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Organization",
+					"name": "Get Department",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -265,13 +264,12 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/organization/department",
+							"raw": "localhost:3000/department",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"organization",
 								"department"
 							]
 						}
@@ -279,7 +277,7 @@
 					"response": []
 				},
 				{
-					"name": "Edit Organization",
+					"name": "Edit Department",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -299,13 +297,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/organization/department",
+							"raw": "localhost:3000/department",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"organization",
 								"department"
 							]
 						}
@@ -313,7 +310,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Organization",
+					"name": "Delete Department",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -333,14 +330,141 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/organization/department",
+							"raw": "localhost:3000/department",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"organization",
 								"department"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Job Title",
+			"item": [
+				{
+					"name": "Add Job Title",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MzE0MDA0OSwiZXhwIjoxNzQ1NzMyMDQ5fQ.tZGsNPTLjf3A32t3axX3hwjr-byndyV-FCrexV145Qc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"front end\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/jobTitle",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"jobTitle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Title",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MzE0MDA0OSwiZXhwIjoxNzQ1NzMyMDQ5fQ.tZGsNPTLjf3A32t3axX3hwjr-byndyV-FCrexV145Qc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/jobTitle",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"jobTitle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Job Title",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MzE0MDA0OSwiZXhwIjoxNzQ1NzMyMDQ5fQ.tZGsNPTLjf3A32t3axX3hwjr-byndyV-FCrexV145Qc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"back end\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/jobTitle",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"jobTitle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Job Title",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MzE0MDA0OSwiZXhwIjoxNzQ1NzMyMDQ5fQ.tZGsNPTLjf3A32t3axX3hwjr-byndyV-FCrexV145Qc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/jobTitle",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"jobTitle"
 							]
 						}
 					},

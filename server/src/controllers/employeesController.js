@@ -55,7 +55,7 @@ exports.addEmployee = async (req, res, next) => {
 
     res.status(200).json({ message: "Employee added successfully" });
   } catch (error) {
-    const err = new Error("Employee already exists (email or phone number)");
+    const err = new Error("Employee already exist (email or phone number)");
     err.statusCode = 409;
     next(err);
   }
@@ -82,7 +82,7 @@ exports.editEmployee = async (req, res, next) => {
       .where(eq(employeesTable.id, req.body.id));
 
     if (!query.affectedRows) {
-      const err = new Error(`Employee with id ${req.body.id} doesn't exists`);
+      const err = new Error(`Employee with id ${req.body.id} doesn't exist`);
       err.statusCode = 409;
       throw err;
     }
@@ -102,7 +102,7 @@ exports.deleteEmployee = async (req, res, next) => {
       .where(eq(employeesTable.id, req.body.id));
 
     if (!query.affectedRows) {
-      const err = new Error(`Employee with id ${req.body.id} doesn't exists`);
+      const err = new Error(`Employee with id ${req.body.id} doesn't exist`);
       err.statusCode = 409;
       throw err;
     }

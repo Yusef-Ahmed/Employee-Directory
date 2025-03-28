@@ -16,7 +16,7 @@ exports.signup = async (req, res, next) => {
 
     res.status(200).json({ message: "User created successfully" });
   } catch {
-    const err = new Error("User already exists");
+    const err = new Error("User already exist");
     err.statusCode = 409;
     next(err);
   }
