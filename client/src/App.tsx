@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import RootLayout from "./pages/RootLayout";
 import Employees from "./pages/Employees";
 import employeesLoader from "./features/employees/loader";
+import employeesAction from "./features/employees/action";
 import authAction from "./features/authentication/action";
 import NotFound from "./pages/NotFound";
 import Authentication from "./pages/authentication";
@@ -21,7 +22,8 @@ function App() {
         {
           path: "/employees",
           element: <Employees />,
-          // loader: employeesLoader,
+          loader: employeesLoader,
+          action: employeesAction
         },
         {
           path: "/auth/:mode",

@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="flex justify-between items-center h-15 px-10 font-bold text-lg">
+    <header className="flex justify-between items-center h-20 -mt-2 px-10 font-bold text-lg border-b-1 border-gray-400">
       <img
         className="h-3/5"
         src="https://5d.ae/themes/mysite/assets/img/5D-white.svg"
@@ -11,7 +11,7 @@ function Header() {
       <section className="flex gap-12">
         <NavLink
           to="/"
-          className={({isActive}) =>
+          className={({ isActive }) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -20,7 +20,7 @@ function Header() {
         </NavLink>
         <NavLink
           to="/employees"
-          className={({isActive}) =>
+          className={({ isActive }) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -29,7 +29,7 @@ function Header() {
         </NavLink>
         <NavLink
           to="/departments"
-          className={({isActive}) =>
+          className={({ isActive }) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -38,7 +38,7 @@ function Header() {
         </NavLink>
         <NavLink
           to="/jobTitle"
-          className={({isActive}) =>
+          className={({ isActive }) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -49,7 +49,7 @@ function Header() {
       <section>
         <NavLink
           to="/auth/login"
-          className={({isActive}) =>
+          className={({ isActive }) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
