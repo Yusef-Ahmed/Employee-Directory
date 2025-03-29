@@ -1,6 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useScreenSize } from "../components/useScreenSize";
+import MobileHeader from "./MobileHeader";
 
 function Header() {
+  const isMobile = useScreenSize();
+  const loggedIn = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    navigate("/auth/login")
+  }
+
+  if (isMobile) {
+    return <MobileHeader />;
+  }
+
   return (
     <header className="flex justify-between items-center h-20 -mt-2 px-10 font-bold text-lg border-b-1 border-gray-400">
       <img
@@ -37,7 +52,7 @@ function Header() {
           Departments
         </NavLink>
         <NavLink
-          to="/jobTitle"
+          to="/jobTitles"
           className={({ isActive }) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
@@ -47,16 +62,24 @@ function Header() {
         </NavLink>
       </section>
       <section>
-        <NavLink
-          to="/auth/login"
-          className={({ isActive }) =>
-            (isActive ? "border-b-2 " : "") +
-            "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
-          }
-        >
-          Login
-        </NavLink>
-        {/* <NavLink to="/logout">logout</NavLink> */}
+        {loggedIn ? (
+          <button
+            className="will-change-auto hover:-translate-y-1 hover:scale-125 duration-200 cursor-pointer"
+            onClick={handleLogout}
+          >
+            logout
+          </button>
+        ) : (
+          <NavLink
+            to="/auth/login"
+            className={({ isActive }) =>
+              (isActive ? "border-b-2 " : "") +
+              "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
+            }
+          >
+            Login
+          </NavLink>
+        )}
       </section>
     </header>
   );
