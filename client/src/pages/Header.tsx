@@ -11,7 +11,7 @@ function Header() {
       <section className="flex gap-12">
         <NavLink
           to="/"
-          className={(isActive) =>
+          className={({isActive}) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -19,8 +19,8 @@ function Header() {
           Home
         </NavLink>
         <NavLink
-          to={"/employees"}
-          className={(isActive) =>
+          to="/employees"
+          className={({isActive}) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -29,7 +29,7 @@ function Header() {
         </NavLink>
         <NavLink
           to="/departments"
-          className={(isActive) =>
+          className={({isActive}) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -38,7 +38,7 @@ function Header() {
         </NavLink>
         <NavLink
           to="/jobTitle"
-          className={(isActive) =>
+          className={({isActive}) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
@@ -48,8 +48,8 @@ function Header() {
       </section>
       <section>
         <NavLink
-          to="/login"
-          className={(isActive) =>
+          to="/auth/login"
+          className={({isActive}) =>
             (isActive ? "border-b-2 " : "") +
             "will-change-auto hover:-translate-y-1 hover:scale-125 duration-200"
           }
