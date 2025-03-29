@@ -12,6 +12,12 @@ router.get(
   departmentController.getDepartment
 );
 
+router.get(
+  "/department/:id",
+  isAuth,
+  departmentController.singleDepartment
+);
+
 router.post(
   "/department",
   isAuth,

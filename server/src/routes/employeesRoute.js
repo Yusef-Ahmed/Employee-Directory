@@ -14,6 +14,14 @@ router.get(
   employeesController.allEmployees
 );
 
+router.get(
+  "/employees/:id",
+  isAuth,
+  employeesValidator.getSingleEmployeeValidator,
+  validateHandler,
+  employeesController.singleEmployee
+);
+
 router.post(
   "/employees",
   isAuth,
@@ -22,7 +30,7 @@ router.post(
   employeesController.addEmployee
 );
 
-router.patch(
+router.put(
   "/employees",
   isAuth,
   employeesValidator.editEmployeeValidator,

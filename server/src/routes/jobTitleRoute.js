@@ -12,6 +12,12 @@ router.get(
   jobTitleController.getJobTitle
 );
 
+router.get(
+  "/jobTitle/:id",
+  isAuth,
+  jobTitleController.singleJobTitle
+);
+
 router.post(
   "/jobTitle",
   isAuth,

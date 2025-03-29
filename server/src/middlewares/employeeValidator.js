@@ -1,4 +1,4 @@
-const { body, query } = require("express-validator");
+const { body, query, param } = require("express-validator");
 const db = require("../db");
 const { departmentsTable, jobTitleTable } = require("../db/schema");
 const { eq } = require("drizzle-orm");
@@ -15,6 +15,10 @@ exports.getEmployeeValidator = [
     .withMessage("Page number must be a number"),
 ];
 
+exports.getSingleEmployeeValidator = [
+  param("id").isNumeric().withMessage("Id must be a number"),
+];
+
 exports.addEmployeeValidator = [
   body("email").trim().isEmail().withMessage("Enter a valid email"),
 
@@ -23,35 +27,39 @@ exports.addEmployeeValidator = [
     .isLength({ min: 5, max: 20 })
     .withMessage("Name must be between 5 and 20 characters"),
 
-  body("department")
-    .trim()
-    .custom(async (value, { req }) => {
-      const [department] = await db
-        .select({ id: departmentsTable.id })
-        .from(departmentsTable)
-        .where(eq(value, departmentsTable.name));
+    body("departmentId").isNumeric().withMessage("Enter a valid department id"),
+    
+    body("jobTitleId").isNumeric().withMessage("Enter a valid job title id"),
 
-      if (!department) {
-        throw new Error("Department not found");
-      }
+  // body("department")
+  //   .trim()
+  //   .custom(async (value, { req }) => {
+  //     const [department] = await db
+  //       .select({ id: departmentsTable.id })
+  //       .from(departmentsTable)
+  //       .where(eq(value, departmentsTable.name));
 
-      req.body.departmentId = department.id;
-    }),
+  //     if (!department) {
+  //       throw new Error("Department not found");
+  //     }
 
-  body("jobTitle")
-    .trim()
-    .custom(async (value, { req }) => {
-      const [jobTitle] = await db
-        .select({ id: jobTitleTable.id })
-        .from(jobTitleTable)
-        .where(eq(value, jobTitleTable.name));
+  //     req.body.departmentId = department.id;
+  //   }),
 
-      if (!jobTitle) {
-        throw new Error("Job title not found");
-      }
+  // body("jobTitle")
+  //   .trim()
+  //   .custom(async (value, { req }) => {
+  //     const [jobTitle] = await db
+  //       .select({ id: jobTitleTable.id })
+  //       .from(jobTitleTable)
+  //       .where(eq(value, jobTitleTable.name));
 
-      req.body.jobTitleId = jobTitle.id;
-    }),
+  //     if (!jobTitle) {
+  //       throw new Error("Job title not found");
+  //     }
+
+  //     req.body.jobTitleId = jobTitle.id;
+  //   }),
 
   body("phoneNumber")
     .trim()
