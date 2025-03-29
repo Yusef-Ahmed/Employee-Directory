@@ -1,10 +1,31 @@
 const db = require("../db/index");
-const { jobTitleTable } = require("../db/schema");
-const { eq } = require("drizzle-orm");
+const { jobTitleTable, employeesTable } = require("../db/schema");
+const { eq, sql } = require("drizzle-orm");
 
 exports.getJobTitle = async (_req, res, next) => {
   try {
-    const data = await db.select().from(jobTitleTable);
+    const data = await db
+      .select({ ...jobTitleTable, count: sql`count(${employeesTable.id})` })
+      .from(jobTitleTable)
+      .leftJoin(
+        employeesTable,
+        eq(jobTitleTable.id, employeesTable.jobTitleId)
+      )
+      .groupBy(jobTitleTable.id, jobTitleTable.name);
+    res.status(200).json({ data });
+  } catch {
+    const err = new Error(`Job title doesn't exist`);
+    err.statusCode = 409;
+    next(err);
+  }
+};
+
+exports.singleJobTitle = async (req, res, next) => {
+  try {
+    const [data] = await db
+      .select()
+      .from(jobTitleTable)
+      .where(eq(jobTitleTable.id, req.params.id));
 
     res.status(200).json({ data });
   } catch {
