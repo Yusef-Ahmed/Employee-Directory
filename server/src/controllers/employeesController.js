@@ -4,14 +4,28 @@ const {
   departmentsTable,
   jobTitleTable,
 } = require("../db/schema");
-const { eq, like, and } = require("drizzle-orm");
+const { eq, like, or, sql } = require("drizzle-orm");
 
 exports.allEmployees = async (req, res, next) => {
   const pageNumber = +req.query.pageNumber || 1;
-  const pageSize = +req.query.pageSize || 8;
+  const pageSize = +req.query.pageSize || 6;
   const search = req.query.search || "";
-  const department = req.query.department || "";
-  const jobTitle = req.query.jobTitle || "";
+
+  const [{ value: total }] = await db
+    .select({ value: sql`count(*)` })
+    .from(employeesTable)
+    .leftJoin(
+      departmentsTable,
+      eq(employeesTable.departmentId, departmentsTable.id)
+    )
+    .leftJoin(jobTitleTable, eq(employeesTable.jobTitleId, jobTitleTable.id))
+    .where(
+      or(
+        like(employeesTable.fullName, `%${search}%`),
+        like(departmentsTable.name, `%${search}%`),
+        like(jobTitleTable.name, `%${search}%`)
+      )
+    );
 
   const data = await db
     .select({
@@ -26,23 +40,39 @@ exports.allEmployees = async (req, res, next) => {
     )
     .leftJoin(jobTitleTable, eq(employeesTable.jobTitleId, jobTitleTable.id))
     .where(
-      and(
+      or(
         like(employeesTable.fullName, `%${search}%`),
-        like(departmentsTable.name, `%${department}%`),
-        like(jobTitleTable.name, `%${jobTitle}%`)
+        like(departmentsTable.name, `%${search}%`),
+        like(jobTitleTable.name, `%${search}%`)
       )
     )
     .offset((pageNumber - 1) * pageSize)
     .limit(pageSize);
-  res.status(200).json({ data });
+  res.status(200).json({ data, total });
+};
+
+exports.singleEmployee = async (req, res, next) => {
+  const [data] = await db
+    .select({
+      ...employeesTable,
+      departmentName: departmentsTable.name,
+      jobTitleName: jobTitleTable.name,
+    })
+    .from(employeesTable)
+    .leftJoin(
+      departmentsTable,
+      eq(employeesTable.departmentId, departmentsTable.id)
+    )
+    .leftJoin(jobTitleTable, eq(employeesTable.jobTitleId, jobTitleTable.id))
+    .where(eq(req.params.id, employeesTable.id));
+
+  res.status(200).json({ employee: data ?? { message: "employee not found" } });
 };
 
 exports.addEmployee = async (req, res, next) => {
   const data = {
     fullName: req.body.fullName,
     email: req.body.email,
-    department: req.body.department,
-    jobTitle: req.body.jobTitle,
     phoneNumber: req.body.phoneNumber,
     status: req.body.status,
     createdBy: req.userId,
@@ -54,8 +84,10 @@ exports.addEmployee = async (req, res, next) => {
     await db.insert(employeesTable).values(data);
 
     res.status(200).json({ message: "Employee added successfully" });
-  } catch (error) {
-    const err = new Error("Employee already exist (email or phone number)");
+  } catch {
+    const err = new Error(
+      "Invalid department or job title or the employee already exist"
+    );
     err.statusCode = 409;
     next(err);
   }
