@@ -81,7 +81,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/employees?pageNumber=1&pageSize=10&search=mo&department=dev&jobTitle=full",
+							"raw": "localhost:3000/employees?pageNumber=&search=",
 							"host": [
 								"localhost"
 							],
@@ -92,24 +92,37 @@
 							"query": [
 								{
 									"key": "pageNumber",
-									"value": "1"
-								},
-								{
-									"key": "pageSize",
-									"value": "10"
+									"value": ""
 								},
 								{
 									"key": "search",
-									"value": "mo"
-								},
-								{
-									"key": "department",
-									"value": "dev"
-								},
-								{
-									"key": "jobTitle",
-									"value": "full"
+									"value": ""
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single employees",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MzE0MDA0OSwiZXhwIjoxNzQ1NzMyMDQ5fQ.tZGsNPTLjf3A32t3axX3hwjr-byndyV-FCrexV145Qc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/employees/10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"10"
 							]
 						}
 					},
@@ -128,7 +141,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fullName\": \"ahmed\",\r\n    \"email\": \"ahmed@email.com\",\r\n    \"department\": \"IT\",\r\n    \"jobTitle\": \"Cloud\",\r\n    \"phoneNumber\": \"01277321637\",\r\n    \"status\": true\r\n}",
+							"raw": "{\r\n    \"fullName\": \"ahmed\",\r\n    \"email\": \"ahmed@email.com\",\r\n    \"departmentId\": 1,\r\n    \"jobTitleId\": 1,\r\n    \"phoneNumber\": \"01277321637\",\r\n    \"status\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -151,7 +164,7 @@
 				{
 					"name": "Edit employee",
 					"request": {
-						"method": "PATCH",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
@@ -271,6 +284,31 @@
 							"port": "3000",
 							"path": [
 								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Department",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MzE0MDA0OSwiZXhwIjoxNzQ1NzMyMDQ5fQ.tZGsNPTLjf3A32t3axX3hwjr-byndyV-FCrexV145Qc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/department/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"department",
+								"2"
 							]
 						}
 					},
@@ -399,6 +437,31 @@
 							"port": "3000",
 							"path": [
 								"jobTitle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Job Title",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MzE0MDA0OSwiZXhwIjoxNzQ1NzMyMDQ5fQ.tZGsNPTLjf3A32t3axX3hwjr-byndyV-FCrexV145Qc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/jobTitle/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"jobTitle",
+								"2"
 							]
 						}
 					},
