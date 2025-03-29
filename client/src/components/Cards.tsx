@@ -1,14 +1,12 @@
-import { Form, Link, useLoaderData } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { IEmployee } from "../interfaces/employee.interface";
 
-function Cards() {
-  const response = useLoaderData();
-
+function Cards({ data }: { data: IEmployee[] }) {
   return (
     <div className="flex flex-wrap justify-around gap-y-10">
-      {response.data.map((employee: IEmployee) => (
+      {data.map((employee: IEmployee) => (
         <div
-          className="w-[30vw] border rounded-md p-5 flex flex-col justify-between gap-2"
+          className="w-[400px] border rounded-md p-5 flex flex-col justify-between gap-2"
           key={employee.id}
         >
           <header>
@@ -46,7 +44,7 @@ function Cards() {
                 }
               }}
             >
-              <input hidden value={employee.id} name="id" />
+              <input hidden defaultValue={employee.id} name="id" />
               <button className="bg-red-600 hover:bg-red-500 p-2 rounded-sm hover:cursor-pointer hover:-translate-y-1 duration-150">
                 Delete
               </button>
@@ -58,21 +56,6 @@ function Cards() {
               Edit
             </Link>
           </section>
-          {/* <h2>ID: {employee.id}</h2> */}
-          {/* <h2>Department ID: {employee.departmentId}</h2> */}
-          {/* <h2>Job Title ID: {employee.jobTitleId}</h2> */}
-          {/* <h2>Created By: {employee.createdBy}</h2> */}
-          {/* {employee.updatedAt && (
-            <h2>
-              Updated At:{" "}
-              {employee.updatedAt
-                ? new Date(employee.updatedAt).toLocaleDateString()
-                : "Not Updated"}
-            </h2>
-          )}
-          {employee.updatedBy && (
-            <h2>Updated By: {employee.updatedBy ?? "Not Updated"}</h2>
-          )} */}
         </div>
       ))}
     </div>
