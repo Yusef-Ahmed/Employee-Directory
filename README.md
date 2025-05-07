@@ -49,7 +49,7 @@ It allows HR professionals to search, view, and manage employee details includin
 
 ##### **1- Go into server directory and create `.env` file as following**
 
-```sh
+```env
 JWT_SECRET=SOME_SECRET_KEY
 JWT_EXPIRES_IN=30d
 
@@ -77,7 +77,7 @@ cd server
 
 ##### **2- Create a `.env` file as following**
 
-```sh
+```env
 DATABASE_URL=mysql://<username>:<password>@<host>:<port>/<database_name>
 
 JWT_SECRET=SOME_SECRET_KEY
