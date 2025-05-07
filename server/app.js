@@ -4,7 +4,7 @@ const employeesRoute = require("./src/routes/employeesRoute");
 const departmentRoute = require("./src/routes/departmentRoute");
 const jobTitleRoute = require("./src/routes/jobTitleRoute");
 const bodyParser = require("body-parser");
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 
