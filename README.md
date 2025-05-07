@@ -9,85 +9,6 @@ It allows HR professionals to search, view, and manage employee details includin
 
 ![Flowchart](Employee_Directory_Flowchart.png)
 
-## Installation & Setup
-
-### Required Prerequisites
-
-- Node.js (Install from [nodejs.org](https://nodejs.org/))
-- MySQL Server (Install from [mysql.com](https://dev.mysql.com/downloads/))
-- MySQL Workbench (optional, for GUI)
-
-### Server Setup
-
-#### **1- Go into the server directory**
-
-```sh
-cd server
-```
-
-#### **2- Install backend dependencies**
-
-```sh
-npm install
-```
-
-#### **3- Open MySQL Workbench and create the database**
-
-```sql
-CREATE DATABASE database_name;
-```
-
-***Note**: Replace `database_name` with your preferred database name*
-
-#### **4- Create a `.env` file in the server directory as following**
-
-```env
-DATABASE_URL = mysql://<username>:<password>@<host>:<port>/<database_name>
-
-JWT_SECRET = your_secret_key
-
-JWT_EXPIRES_IN = time_in_seconds
-```
-
-***Note**: Replace `<username>`, `<password>`, `<host>`, `<port>`, and `<database_name>` with your database credentials*
-
-#### **5- Create the database tables**
-
-```sh
-npm run db:generate # Generates schema
-npm run db:migrate # Applies migrations to set up tables
-```
-
-#### **6- Start the server (with nodemon)**
-
-```sh
-npm start
-```
-
-#### **7- The server should now be running at `http://localhost:3000`**
-
-### Client Setup
-
-#### **1- Go into the client directory**
-
-```sh
-cd client
-```
-
-#### **2- Install frontend dependencies**
-
-```sh
-npm install
-```
-
-#### **3- Start the frontend**
-
-```sh
-npm start
-```
-
-#### **4- The frontend should now be running at `http://localhost:5173`**
-
 ## Tech Stack
 
 ### Frontend (React + TypeScript)
@@ -121,3 +42,97 @@ npm start
 - MySQL – Relational database for structured data storage.
 
 - Drizzle ORM – TypeScript ORM for MySQL database management.
+
+## Installation & Setup
+
+### With Docker
+
+##### **1- Go into server directory and create `.env` file as following**
+
+```sh
+JWT_SECRET=SOME_SECRET_KEY
+JWT_EXPIRES_IN=30d
+
+# For Docker
+DATABASE_URL_DOCKER=mysql://root:12345678@mysql-employee-directory:3306/employee_directory
+MYSQL_ROOT_PASSWORD=12345678
+MYSQL_DATABASE=employee_directory
+```
+
+##### **2- Run docker compose in the root directory**
+
+```sh
+docker compose up
+```
+
+### Without Docker
+
+#### Server Setup
+
+##### **1- Go into the server directory (from the root directory)**
+
+```sh
+cd server
+```
+
+##### **2- Create a `.env` file as following**
+
+```sh
+DATABASE_URL=mysql://<username>:<password>@<host>:<port>/<database_name>
+
+JWT_SECRET=SOME_SECRET_KEY
+
+JWT_EXPIRES_IN=30d
+```
+
+***Note**: Replace `<username>`, `<password>`, `<host>`, `<port>`, and `<database_name>` with your database credentials*
+
+##### **3- Install backend dependencies**
+
+```sh
+npm install
+```
+
+##### **4- Open MySQL Workbench and create the database**
+
+```sql
+CREATE DATABASE database_name;
+```
+
+***Note**: Replace `database_name` with the name you chose in `.env`*
+
+##### **5- Create the database tables**
+
+```sh
+npm run db:migrate # Applies migrations to set up tables
+```
+
+##### **6- Start the server (with nodemon)**
+
+```sh
+npm start
+```
+
+The server should now be running at `http://localhost:3000`
+
+#### Client Setup
+
+##### **1- Go into the client directory**
+
+```sh
+cd client
+```
+
+##### **2- Install frontend dependencies**
+
+```sh
+npm install
+```
+
+##### **3- Start the frontend**
+
+```sh
+npm start
+```
+
+The frontend should now be running at `http://localhost:5173`
